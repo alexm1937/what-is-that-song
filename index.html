@@ -4,9 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css">
+    <link href="stylesheet" href="./assets/css/style.css" >
+    <title>What Is That Song!</title>
 </head>
-<body>
-    
+
+
+
+<body class="flex flex-wrap">
+    <!-- Header -->
+    <header class="h-20 w-full text-4xl text-gray-200 bg-gray-700">
+    <h1>TestHeader</h1>
+    </header>
+
+    <!-- SIDE BAR - Buttons for previous searches stored in localStorage -->
+    <div class="relative h-full w-1/4">
+        <div class="absolute inset-y-0 left-0 w-auto p-2">
+            <div>
+                <h1 class="text-2xl font-bold font-serif">Previous Searches:</h1>
+            </div>
+            <!-- harcode btns for example? -->
+            <div id="btn-div">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                examplebtn
+              </button>
+            </div>
+        </div>
+      </div>
+
+      <!-- Main body -->
+
+      <!-- Input form -->
+      <form class="w-full max-w-sm">
+        <div class="flex items-center border-b border-teal-500 py-2">
+          <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Jane Doe" aria-label="Full name">
+          <button class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
+            Sign Up
+          </button>
+          <button class="flex-shrink-0 border-transparent border-4 text-teal-500 hover:text-teal-800 text-sm py-1 px-2 rounded" type="button">
+            Cancel
+          </button>
+        </div>
+      </form>
+
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

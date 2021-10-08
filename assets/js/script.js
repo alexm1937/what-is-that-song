@@ -2,52 +2,120 @@
 var happiKey = "6cee08jelZimDlZuhamu4dj8z6Hes2R3BUAfCerTzePrK80h8QcSAhSg";
 var lastFmKey = "8443bdf1c4cc5890510c1a04982da6d7";
 var songHistory = {};
-
+// TODO ERROR HANDLING
 $("#search").click( async function () {
-    var title = $("#title").text();
-    var artist = $("#artist").text();
+    var title = $("#song").val().trim();
+    var artist = $("#artist").val().trim();
     if (title && artist) {
         title = toTitleCase(title);
         artist = toTitleCase(artist);
+        var track = artist + "+" + title;
+        if (track in songHistory) {
+            display(track);
+            return;
+        }
+        var lastFmUrl = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist=" + artist + "&track=" + title + "&api_key=" + lastFmKey + "&format=json";
+        var lastFmJson = await get(lastFmUrl);
+        if (lastFmJson.error) {
+            console.log("none found")
+            // TODO song not found, probably show a modal
+            return;
+        }
 
+        var happiDevUrlIds = "https://api.happi.dev/v1/music?q=" + artist + " " + title + "&limit=&apikey=" + happiKey + "&type=track&lyrics=1";
+    
+        var happiJson = await get(happiDevUrlIds);
+        if (happiJson.success === "false" || happiJson.length === 0) {
+            
+            var lyrics = "";
+        } else {
+            var happiJsonLyrics = await get(happiJson.result[0].api_lyrics + "?apikey=" + happiKey);
+            if (happiJsonLyrics.success === "false" || happiJsonLyrics.length === 0) {
+                var lyrics = "";
+            } else {
+                var lyrics = happiJsonLyrics.result.lyrics;
+            }
+        }
+        
+        var metadata = {
+            "lyrics":lyrics,
+            "length": parseInt(lastFmJson.track.duration) / 1000,
+            "album":lastFmJson.track.album.title,
+            "albumThumbnail": lastFmJson.track.album.image[2]['#text'],
+            "lastFmPlaycount": lastFmJson.track.playcount 
+        };
+        saveHistory(track,metadata);
+        displayHistory();
+        display(track);
     } else {
-        console.log("blank");
+        console.log("Either title or artist or both are missing");
         // lacking title or artist or both
         // popup modal needs doing TODO
     }
 })
 /**
  * Displays lyrics & metadata
+ * TODO make the lyrics show newlines correctly
  */
 function display(song) {
-    
+    if (!song in songHistory) {
+        throw new error("you fucked up son");
+    }
+    console.log(song);
+    console.log(songHistory[song]);
+    var artistTitle = song.split("+");
+    $(".titleReturn").text(artistTitle[1]);
+    $(".artistReturn").text("by " + artistTitle[0]);
+    $(".albumReturn").text ("Album: " + songHistory[song].album);
+    if (songHistory[song].lyrics === ""){
+        $(".lyrics").text("No lyrics available :(");
+    } else {
+        $(".lyrics").text(songHistory[song].lyrics)
+    }
+    $(".additionalMetadataReturn").empty();
+    var metaH1El = $("<h2></h2>").text("Metadata:");
+    metaH1El.attr("class","mx-7 text-2xl font-bold font-serif text-center");
+    $(".additionalMetadataReturn").append(metaH1El);
+    var length = $("<p></p>").text("Length: " + Math.floor(parseInt(songHistory[song].length ) / 60) + ":" + parseInt(songHistory[song].length) % 60 );
+    $(".additionalMetadataReturn").append(length);
+    var lastFmPlayCount = $("<p></p>").text("LastFM Play Count: " + songHistory[song].lastFmPlaycount);
+    $(".additionalMetadataReturn").append(lastFmPlayCount)
+    var imgEl = $("<img>");
+    imgEl.attr("src", songHistory[song].albumThumbnail);
+    $(".additionalMetadataReturn").append(imgEl);
 }
 /**
  * populates the history div if there is any history to populate it with
  */
 function displayHistory() {
-    $(".history").empty();
+    
+    $(".historyDiv").empty();
+    var h1 = $("<h1></h1>").text("Previous Searches:")
+    h1.attr("class","text-2xl font-bold font-serif text-center");
+    $(".historyDiv").append(h1);
     for (var Key in songHistory) {
-        var btn = $("<button></button>").text(Key);
-        btn.attr("class","historyBtn");
+        var keySplit = Key.split("+");
+        var btnText = keySplit[0] + " by " + keySplit[1];
+        var btn = $("<button></button>").text(btnText);
+        btn.attr("class","historyBtn mx-7 my-1 bg-blue-500 hover:bg-blue-700 shadow-md border border-black text-white font-bold py-2 px-4 rounded");
         btn.attr("type", "button");
-        $(".history").append(btn);
+        $(".historyDiv").append(btn);
         $(".historyBtn").click(function () {
-            
-            // Needs new function
-            display($(this).text());
+            var btnText = $(this).text();
+            var split = btnText.split(" by ");
+            display(split[0]+ "+"+ split[1]);
         })
+
     }
 }
 /**
- * saves the key value pair (artist+title --> lyrics)
- * @param {string} song -format is ("Blonde Redhead+Harmony") where the artist is Blonde Redhead & the title is Harmony
- * @param {string} lyrics - string containing lyrics
+ * 
+ * @param {Object} song - containing artist, album & title 
  * @param {Object} Object containing metadata
  */
 // TODO save metadata
-function saveHistory(song, lyrics, metadata){
-    songHistory[song] = {"lyrics": lyrics,"metadata": metadata};
+function saveHistory(song, metadata){
+    songHistory[song] = metadata;
     localStorage.setItem('songHistory', JSON.stringify(songHistory));
     
 }
@@ -90,3 +158,5 @@ function toTitleCase(str) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
 }
+loadHistory();
+displayHistory();

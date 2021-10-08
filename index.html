@@ -11,7 +11,7 @@
 
 
 
-<body class="flex flex-wrap h-full">
+<body class="flex flex-wrap h-full bg-gray-100">
     <!-- Header -->
     <header class="h-20 w-full bg-gray-700">
     <h1 class="text-4xl text-gray-200">What is That Song!</h1>
@@ -19,46 +19,53 @@
     </header>
 
     <!-- SIDE BAR - Buttons for previous searches stored in localStorage -->
-    <div class="flex p-2 h-4/5 w-48 ">
-        <div>
-            <div>
-                <h1 class="text-2xl font-bold font-serif">Previous Searches:</h1>
-            </div>
-            <!-- harcode btns for example? -->
-            <div id="btn-div" class="history">
-            <button class="my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+
+    <div class="flex p-2 h-4/5 w-48">
+            <div id="btn-div" class="content-center">
+                <h1 class="text-2xl font-bold font-serif text-center">Previous Searches:</h1>
+                <!-- hardcoded buttons -->
+                <button class="mx-7 my-1 bg-blue-500 hover:bg-blue-700 shadow-md border border-black text-white font-bold py-2 px-4 rounded">
                 examplebtn
               </button>
-              <button class="my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              <button class="mx-7 my-1 bg-blue-500 hover:bg-blue-700 shadow-md border border-black text-white font-bold py-2 px-4 rounded">
                 examplebtn
               </button>
-              <button class="my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              <button class="mx-7 my-1 bg-blue-500 hover:bg-blue-700 shadow-md border border-black text-white font-bold py-2 px-4 rounded">
                 examplebtn
               </button>
-              <button class="my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              <button class="mx-7 my-1 bg-blue-500 hover:bg-blue-700 shadow-md border border-black text-white font-bold py-2 px-4 rounded">
                 examplebtn
               </button>
-              <button class="my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              <button class="mx-7 my-1 bg-blue-500 hover:bg-blue-700 shadow-md border border-black text-white font-bold py-2 px-4 rounded">
                 examplebtn
               </button>
             </div>
-        </div>
     </div>
 
     <!-- Main body -->
     <div class="pt-2 w-4/6 h-4/5">
+
       <!-- Input form -->
       <form>
         <div class="flex items-center border-b border-teal-500 py-2">
-          <input id="title" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Enter Song Name">
-          <input id="artist" class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Enter Artist Name">
-          <button id="search" class="bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
+          <input class="appearance-none shadow-lg bg-transparent border-2 border-black rounded w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:ring-2 focus:ring-blue-500" type="text" placeholder="Enter Song Name">
+          <input class="appearance-none shadow-lg bg-transparent border-2 border-black rounded w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:ring-2 focus:ring-blue-500" type="text" placeholder="Enter Artist Name">
+          <button class="bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
             Search
           </button>
         </div>
       </form>
+
+      <!-- Hardcode artist &album return -->
+        <h1 class="mt-5 mx-7 text-2xl font-bold font-serif text-center" >
+        Artist Name return
+        </h1>
+        <h1 class="mx-7 text-2xl font-bold font-serif text-center">
+        Album Name return
+        </h1>
+
       <!-- Hardcode lyric return -->
-      <div>
+      <div class="mt-10">
         "Lace Up"
         (feat. Lil Jon)
         
@@ -136,15 +143,14 @@
         We laced up [x4]
         
         [Hook]
-        
       </div>
-
-
     </div>
 
     <!-- right hand side div for metadata such as album and cover art -->
-    <div class="w-auto h-4/5 p-2">
-        test?
+    <div class="w-1/6 h-auto p-2 m-auto">
+        <h1 class=" mx-7 text-2xl font-bold font-serif text-center" >
+            Additional metadata return
+        </h1>
     </div>
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

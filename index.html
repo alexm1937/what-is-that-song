@@ -11,7 +11,7 @@
 
 
 
-<body class="flex flex-wrap h-screen">
+<body class="flex flex-wrap h-full">
     <!-- Header -->
     <header class="h-20 w-full bg-gray-700">
     <h1 class="text-4xl text-gray-200">What is That Song!</h1>
@@ -19,7 +19,7 @@
     </header>
 
     <!-- SIDE BAR - Buttons for previous searches stored in localStorage -->
-    <div class="flex p-2 h-full w-36">
+    <div class="flex p-2 h-4/5 w-48 ">
         <div>
             <div>
                 <h1 class="text-2xl font-bold font-serif">Previous Searches:</h1>
@@ -46,11 +46,12 @@
     </div>
 
     <!-- Main body -->
-    <div class="pt-2 w-4/6 h-full">
+    <div class="pt-2 w-4/6 h-4/5">
       <!-- Input form -->
       <form>
         <div class="flex items-center border-b border-teal-500 py-2">
           <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Enter Song Name">
+          <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Enter Artist Name">
           <button class="bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
             Search
           </button>
@@ -142,7 +143,7 @@
     </div>
 
     <!-- right hand side div for metadata such as album and cover art -->
-    <div class="w-auto h-full p-2">
+    <div class="w-auto h-4/5 p-2">
         test?
     </div>
 

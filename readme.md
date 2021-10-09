@@ -1,5 +1,8 @@
 # What is That Song
-A website to find the lyrics to a song and also search for a phrase within those lyrics.
+
+A website to find the lyrics to a song and show metadata about the song
+
+![image](screenshot.png)
 
 ## By: Victor Weinert, Alex McDaniel & Ean Rodriguez
 
@@ -15,6 +18,6 @@ https://www.last.fm/api
 
 https://happi.dev/docs/music
 
-## Links
+## Link
 
 Live @ https://vw0389.github.io/what-is-that-song/

@@ -14,10 +14,10 @@ $("#search").click( async function () {
             display(track);
             return;
         }
-        var lastFmUrl = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist=" + artist + "&track=" + title + "&api_key=" + lastFmKey + "&format=json";
+        var lastFmUrl = "https://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist=" + artist + "&track=" + title + "&api_key=" + lastFmKey + "&format=json";
         var lastFmJson = await get(lastFmUrl);
         if (lastFmJson === 2 || lastFmJson.error) {
-            console.log("No song found. Clear fields and show modal with an ok button to remove it")
+            console.log("No song found. Clear fields and show modal with an ok button to remove said modal");
             // TODO song not found, probably show a modal
             return;
         }
@@ -48,7 +48,7 @@ $("#search").click( async function () {
         displayHistory();
         display(track);
     } else {
-        console.log("Either title or artist or both are missing. Show modal stating that, with an ok button");
+        console.log("Either title or artist or both are missing. Show modal stating that, with an ok button to dismiss the modal");
         // lacking title or artist or both
         // popup modal needs doing TODO
         return;
@@ -62,8 +62,6 @@ function display(song) {
     if (!song in songHistory) {
         throw new error("Display(song) not found");
     }
-    console.log(song);
-    console.log(songHistory[song]);
     var artistTitle = song.split("+");
     $(".titleReturn").text(artistTitle[1]);
     $(".artistReturn").text("by " + artistTitle[0]);
@@ -116,11 +114,11 @@ function displayHistory() {
     }
 }
 /**
- * 
+ * songHistory ----->> localstorage
  * @param {string} song - containing artist & title 
  * @param {Object} Object containing metadata
  */
-// TODO save metadata
+
 function saveHistory(song, metadata){
     songHistory[song] = metadata;
     localStorage.setItem('songHistory', JSON.stringify(songHistory));

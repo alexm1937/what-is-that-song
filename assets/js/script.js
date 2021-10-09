@@ -14,10 +14,10 @@ $("#search").click( async function () {
             display(track);
             return;
         }
-        var lastFmUrl = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist=" + artist + "&track=" + title + "&api_key=" + lastFmKey + "&format=json";
+        var lastFmUrl = "https://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist=" + artist + "&track=" + title + "&api_key=" + lastFmKey + "&format=json";
         var lastFmJson = await get(lastFmUrl);
-        if (lastFmJson.error) {
-            console.log("none found")
+        if (lastFmJson === 2 || lastFmJson.error) {
+            console.log("No song found. Clear fields and show modal with an ok button to remove said modal");
             // TODO song not found, probably show a modal
             return;
         }
@@ -25,12 +25,12 @@ $("#search").click( async function () {
         var happiDevUrlIds = "https://api.happi.dev/v1/music?q=" + artist + " " + title + "&limit=&apikey=" + happiKey + "&type=track&lyrics=1";
     
         var happiJson = await get(happiDevUrlIds);
-        if (happiJson.success === "false" || happiJson.length === 0) {
+        if (happiJson.success === "false" || happiJson.length === 0 || happiJson === 2) {
             
             var lyrics = "";
         } else {
             var happiJsonLyrics = await get(happiJson.result[0].api_lyrics + "?apikey=" + happiKey);
-            if (happiJsonLyrics.success === "false" || happiJsonLyrics.length === 0) {
+            if (happiJsonLyrics.success === "false" || happiJsonLyrics.length === 0 || happiJsonLyrics === 2) {
                 var lyrics = "";
             } else {
                 var lyrics = happiJsonLyrics.result.lyrics;
@@ -48,29 +48,34 @@ $("#search").click( async function () {
         displayHistory();
         display(track);
     } else {
-        console.log("Either title or artist or both are missing");
+        console.log("Either title or artist or both are missing. Show modal stating that, with an ok button to dismiss the modal");
         // lacking title or artist or both
         // popup modal needs doing TODO
+        return;
     }
 })
 /**
  * Displays lyrics & metadata
- * TODO make the lyrics show newlines correctly
+ * 
  */
 function display(song) {
     if (!song in songHistory) {
-        throw new error("you fucked up son");
+        throw new error("Display(song) not found");
     }
-    console.log(song);
-    console.log(songHistory[song]);
     var artistTitle = song.split("+");
     $(".titleReturn").text(artistTitle[1]);
     $(".artistReturn").text("by " + artistTitle[0]);
     $(".albumReturn").text ("Album: " + songHistory[song].album);
+    $(".lyrics").empty();
     if (songHistory[song].lyrics === ""){
-        $(".lyrics").text("No lyrics available :(");
+        var noLyrics = $("<h2></h2>").text("No lyrics available")
+        $(".lyrics").append(noLyrics);
     } else {
-        $(".lyrics").text(songHistory[song].lyrics)
+        var lyricsSplit = songHistory[song].lyrics.split("\n");
+        lyricsSplit.forEach(line => {
+            var linePEl = $("<p></p>").text(line);
+            $(".lyrics").append(linePEl);
+        });
     }
     $(".additionalMetadataReturn").empty();
     var metaH1El = $("<h2></h2>").text("Metadata:");
@@ -109,11 +114,11 @@ function displayHistory() {
     }
 }
 /**
- * 
- * @param {Object} song - containing artist, album & title 
+ * songHistory ----->> localstorage
+ * @param {string} song - containing artist & title 
  * @param {Object} Object containing metadata
  */
-// TODO save metadata
+
 function saveHistory(song, metadata){
     songHistory[song] = metadata;
     localStorage.setItem('songHistory', JSON.stringify(songHistory));
@@ -121,7 +126,7 @@ function saveHistory(song, metadata){
 }
 /**
  * Loads history if present from localstorage
- * localStorage songHistory -> to var songHistory 
+ * localStorage key songHistory -> to var songHistory 
  */
  function loadHistory () {
     var json_string = localStorage.getItem('songHistory');
@@ -135,6 +140,7 @@ function saveHistory(song, metadata){
 /**
  * Simple function for fetching json
  * @param {string} url - api url to fetch from
+ * @returns {obj} 
  */
 async function get(url) {
     try {

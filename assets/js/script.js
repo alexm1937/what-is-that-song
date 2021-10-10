@@ -76,9 +76,9 @@ $("#search").click(async function () {
 })
 /**
  * Displays lyrics & metadata
- * 
  */
 function display(song) {
+    
     if (!song in songHistory) {
         throw new error("Display(song) not found");
     }
@@ -134,7 +134,7 @@ function displayHistory() {
     $(".historyDiv").append(h1);
     for (var Key in songHistory) {
         var keySplit = Key.split("+");
-        var btnText = keySplit[0] + " by " + keySplit[1];
+        var btnText = keySplit[1] + " by " + keySplit[0];
         var btn = $("<button></button>").text(btnText);
         btn.attr("class", "historyBtn mx-7 my-1 bg-blue-500 hover:bg-blue-700 shadow-md border border-black text-white font-bold py-2 px-4 rounded");
         btn.attr("type", "button");
@@ -142,7 +142,7 @@ function displayHistory() {
         $(".historyBtn").click(function () {
             var btnText = $(this).text();
             var split = btnText.split(" by ");
-            display(split[0] + "+" + split[1]);
+            display(split[1] + "+" + split[0]);
         })
 
     }
@@ -150,6 +150,7 @@ function displayHistory() {
 /**
  * clears currently displayed lyrics, metadata, artist, title & album
  * */
+
 function clear() {
     $(".additionalMetadataReturn").empty();
     $(".lyrics").empty();
@@ -157,17 +158,18 @@ function clear() {
     $(".artistReturn").text("");
     $(".albumReturn").text("");
 }
+
 /**
  * songHistory ----->> localstorage
  * @param {string} song - containing artist & title 
  * @param {Object} Object containing metadata
  */
-
 function saveHistory(song, metadata) {
     songHistory[song] = metadata;
     localStorage.setItem('songHistory', JSON.stringify(songHistory));
 
 }
+
 /**
  * Loads history if present from localstorage
  * localStorage key songHistory -> to var songHistory 
@@ -204,9 +206,11 @@ async function get(url) {
  * @returns {string} - the str in titlecase
  */
 function toTitleCase(str) {
-    return str.replace(/\w\S*/g, function (txt) {
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
+    var split = str.split(" ");
+    for ( var i = 0; i < split.length;i++){
+        split[i] = split[i][0].toUpperCase() + split[i].substr(1).toLowerCase();
+    }
+    return split.join(" ");
 }
 loadHistory();
 displayHistory();

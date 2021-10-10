@@ -214,3 +214,22 @@ function toTitleCase(str) {
 }
 loadHistory();
 displayHistory();
+
+
+// modal test code:
+
+var modal = document.getElementById("modal")
+var modBtn = document.getElementById("modBtn")
+var btnClose = document.getElementById("closeMod");
+modBtn.onclick = function() {
+    modal.style.display = "block";
+    modal.classList.remove("hidden")
+}
+btnClose.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }

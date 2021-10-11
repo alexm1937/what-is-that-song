@@ -3,7 +3,6 @@ var happiKey = "6cee08jelZimDlZuhamu4dj8z6Hes2R3BUAfCerTzePrK80h8QcSAhSg";
 var lastFmKey = "8443bdf1c4cc5890510c1a04982da6d7";
 var songHistory = {};
 
-
 $("#search").click(async function () {
     var title = $("#song").val().trim();
     var artist = $("#artist").val().trim();
@@ -74,6 +73,7 @@ $("#search").click(async function () {
         return;
     }
 })
+
 /**
  * Displays lyrics & metadata
  */
@@ -121,8 +121,8 @@ function display(song) {
             $(".additionalMetadataReturn").append(imgEl);
         }
     }
-
 }
+
 /**
  * populates the history div if there is any history to populate it with
  */
@@ -147,10 +147,10 @@ function displayHistory() {
 
     }
 }
+
 /**
  * clears currently displayed lyrics, metadata, artist, title & album
  * */
-
 function clear() {
     $(".additionalMetadataReturn").empty();
     $(".lyrics").empty();
@@ -181,7 +181,9 @@ function loadHistory() {
     }
 }
 
-// Helper functions
+/////////////////////
+// Helper functions//
+/////////////////////
 
 /**
  * Simple function for fetching json
@@ -200,6 +202,7 @@ async function get(url) {
         return 2
     }
 }
+
 /**
  * takes a string and returns title case of that string
  * @param {string} str - string that may or may not currently be in title case
@@ -212,5 +215,8 @@ function toTitleCase(str) {
     }
     return split.join(" ");
 }
+
+// On Startup functions
+
 loadHistory();
 displayHistory();

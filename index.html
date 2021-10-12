@@ -1,152 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css">
-    <link href="stylesheet" href="./assets/css/style.css" >
-    <title>What Is That Song!</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css">
+  <link href="stylesheet" href="./assets/css/tailwind.css">
+  <link href="stylesheet" href="./assets/css/style.css">
+  <title>What Is That Song!</title>
 </head>
 
 
 
 <body class="flex flex-wrap h-full">
-    <!-- Header -->
-    <header class="h-20 w-full bg-gray-700">
-    <h1 class="text-4xl text-gray-200">What is That Song!</h1>
-    <h2 class="text-2xl text-gray-200">Find lyrics, album and more!</h2>
-    </header>
-
-    <!-- SIDE BAR - Buttons for previous searches stored in localStorage -->
-    <div class="flex p-2 h-4/5 w-48 ">
-        <div>
-            <div>
-                <h1 class="text-2xl font-bold font-serif">Previous Searches:</h1>
-            </div>
-            <!-- harcode btns for example? -->
-            <div id="btn-div">
-            <button class="my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                examplebtn
-              </button>
-              <button class="my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                examplebtn
-              </button>
-              <button class="my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                examplebtn
-              </button>
-              <button class="my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                examplebtn
-              </button>
-              <button class="my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                examplebtn
-              </button>
-            </div>
-        </div>
+  <!-- Header -->
+  <header class="h-20 w-full bg-gradient-to-r from-green-400 to-blue-500">
+    <div class="flex">
+      <svg class="h-10" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path
+          d="M18 3a1 1 0 00-1.196-.98l-10 2A1 1 0 006 5v9.114A4.369 4.369 0 005 14c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V7.82l8-1.6v5.894A4.37 4.37 0 0015 12c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2V3z" />
+      </svg>
+      <h1 class="text-4xl text-gray-200 h-10">What is That Song!</h1>
     </div>
+    <div class="flex">
+      <h2 class="text-2xl text-gray-200">Find lyrics, album and more!</h2>
+    </div>
+  </header>
 
-    <!-- Main body -->
-    <div class="pt-2 w-4/6 h-4/5">
-      <!-- Input form -->
-      <form>
-        <div class="flex items-center border-b border-teal-500 py-2">
-          <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Enter Song Name">
-          <input class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Enter Artist Name">
-          <button class="bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
-            Search
-          </button>
-        </div>
-      </form>
-      <!-- Hardcode lyric return -->
+  <!-- SIDE BAR - Buttons for previous searches stored in localStorage -->
+  <div class="flex p-2 h-4/5 w-48">
+    <div>
       <div>
-        "Lace Up"
-        (feat. Lil Jon)
-        
-        [Intro: Lil Jon]
-        Hey, hey!
-        MGK Bitch! MGK Bitch!
-        Yuhhh
-        Lil Jon, Lil Jon
-        I need to see the motherfucking L's in the air!
-        
-        [Verse 1: Machine Gun Kelly]
-        Ok, where the strong at?
-        Right there, put me on that
-        Hit it once and you're jumping like Mortal Combat
-        Smoke another green be looking like where the long at
-        And you know I'm gonna raise till I'm face up
-        Fuck check-out time, we don't wake up
-        Damn these EST boy's done came up
-        Dirty ass Chucks and a bad bitch lace up
-        Lace up [x4]
-        Ok, where the strong at?
-        Right there, put me on that
-        Hit it once and you're jumping like Mortal Combat
-        Smoke another green be looking like where the long at
-        And you know I'm gonna raise till I'm face up
-        Fuck check-out time, we don't wake up
-        Damn these EST boy's done came up
-        Dirty ass Chucks and a bad bitch lace up
-        
-        [Hook: Lil Jon]
-        Where my east-side motherfuckers? Laced Up!
-        Where my west-side motherfuckers? Laced Up!
-        Where my north-side motherfuckers? Laced Up!
-        South-side motherfuckers? Laced Up!
-        My east-side motherfuckers? Laced Up!
-        West-side motherfuckers? Laced Up!
-        North-side motherfuckers? Laced Up!
-        South-side motherfuckers? Laced Up!
-        
-        [Verse 2: Machine Gun Kelly]
-        All I know, all I know
-        I am from the city where the grass don't grow
-        I am from the city in the middle of the map
-        Where half these motherfuckers that rap don't go
-        All I know, all I know
-        If I throw this cash then her ass get slow
-        But I am from the city where the cash don't blow
-        So I came up for myself and smash that ho
-        Smash that ho, smash that ho
-        Treat her like a Bop It and I pass that ho
-        And I ain't saying nothing that my fans don't know
-        I'm an EST boy till the casket close
-        Six foot deep, six foot three
-        Eight motherfuckers in the SUV
-        Eight new states in a seven day week
-        Whole world laced up like some brand new sneaks
-        Yeah
-        And they know I'm gonna raise till I'm face up
-        Fuck check-out time, we don't wake up
-        Damn these EST boy's done came up
-        Dirty ass Chucks and a bad bitch lace up
-        
-        [Hook]
-        
-        [Verse 3: Lil Jon]
-        Run through the motherfucking club, pushin'
-        Move bitches out the fucking way, mush 'em
-        Wave my drink in the motherfucking air, fuck it
-        Shady in my motherfucking hood, I rep it
-        Bitches getting out of fucking line, check 'em
-        {} my motherfucking nuts, shuck 'em
-        Drank too much fucking liquor, I'm fucked up
-        L's in the motherfucking air, we laced up
-        
-        We laced up [x4]
-        
-        [Hook]
-        
+        <h1 class="text-2xl font-bold font-serif">Previous Searches:</h1>
       </div>
+      <!-- harcode btns for example? -->
+      <div id="btn-div">
+        <button class="my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          examplebtn
+        </button>
+        <button class="my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          examplebtn
+        </button>
+        <button class="my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          examplebtn
+        </button>
+        <button class="my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          examplebtn
+        </button>
+        <button class="my-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          examplebtn
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main body -->
+  <div class="pt-2 w-4/6 h-4/5">
+    <!-- Input form -->
+    <form>
+      <div class="flex items-center border-b border-teal-500 py-2">
+        <input
+          class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+          type="text" placeholder="Enter Song Name">
+        <input
+          class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+          type="text" placeholder="Enter Artist Name">
+        <button
+          class="bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-sm border-4 text-white py-1 px-2 rounded"
+          type="button">
+          Search
+        </button>
+      </div>
+    </form>
+    <!-- Hardcode lyric return -->
+    
+    <div class="bg-gray-200 border p-6 rounded-lg md:grid md:grid-cols-1">
+      "Lace Up"
+      (feat. Lil Jon)
+
+      [Intro: Lil Jon]
+      Hey, hey!
+      MGK Bitch! MGK Bitch!
+      Yuhhh
+      Lil Jon, Lil Jon
+      I need to see the motherfucking L's in the air!
+
+      [Verse 1: Machine Gun Kelly]
+      Ok, where the strong at?
+      Right there, put me on that
+      Hit it once and you're jumping like Mortal Combat
+      Smoke another green be looking like where the long at
+      And you know I'm gonna raise till I'm face up
+      Fuck check-out time, we don't wake up
+      Damn these EST boy's done came up
+      Dirty ass Chucks and a bad bitch lace up
+      Lace up [x4]
+      Ok, where the strong at?
+      Right there, put me on that
+      Hit it once and you're jumping like Mortal Combat
+      Smoke another green be looking like where the long at
+      And you know I'm gonna raise till I'm face up
+      Fuck check-out time, we don't wake up
+      Damn these EST boy's done came up
+      Dirty ass Chucks and a bad bitch lace up
+
+      [Hook: Lil Jon]
+      Where my east-side motherfuckers? Laced Up!
+      Where my west-side motherfuckers? Laced Up!
+      Where my north-side motherfuckers? Laced Up!
+      South-side motherfuckers? Laced Up!
+      My east-side motherfuckers? Laced Up!
+      West-side motherfuckers? Laced Up!
+      North-side motherfuckers? Laced Up!
+      South-side motherfuckers? Laced Up!
+
+      [Verse 2: Machine Gun Kelly]
+      All I know, all I know
+      I am from the city where the grass don't grow
+      I am from the city in the middle of the map
+      Where half these motherfuckers that rap don't go
+      All I know, all I know
+      If I throw this cash then her ass get slow
+      But I am from the city where the cash don't blow
+      So I came up for myself and smash that ho
+      Smash that ho, smash that ho
+      Treat her like a Bop It and I pass that ho
+      And I ain't saying nothing that my fans don't know
+      I'm an EST boy till the casket close
+      Six foot deep, six foot three
+      Eight motherfuckers in the SUV
+      Eight new states in a seven day week
+      Whole world laced up like some brand new sneaks
+      Yeah
+      And they know I'm gonna raise till I'm face up
+      Fuck check-out time, we don't wake up
+      Damn these EST boy's done came up
+      Dirty ass Chucks and a bad bitch lace up
+
+      [Hook]
+
+      [Verse 3: Lil Jon]
+      Run through the motherfucking club, pushin'
+      Move bitches out the fucking way, mush 'em
+      Wave my drink in the motherfucking air, fuck it
+      Shady in my motherfucking hood, I rep it
+      Bitches getting out of fucking line, check 'em
+      {} my motherfucking nuts, shuck 'em
+      Drank too much fucking liquor, I'm fucked up
+      L's in the motherfucking air, we laced up
+
+      We laced up [x4]
+
+      [Hook]
+
 
 
     </div>
 
-    <!-- right hand side div for metadata such as album and cover art -->
-    <div class="w-auto h-4/5 p-2">
-        test?
+
+
+  </div>
+
+  -<div class="album h-60 px-10">
+        Album
     </div>
 
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
+
 </html>

@@ -22,7 +22,7 @@
   <!-- SIDE BAR - Buttons for previous searches stored in localStorage -->
 
   <div class="flex p-2 h-4/5 w-48">
-    <div  class="content-center historyDiv">
+    <div class="content-center historyDiv">
     </div>
   </div>
 
@@ -48,13 +48,13 @@
 
     <!-- Hardcode title, artist & album return -->
     <h1 class="mt-5 mx-7 text-2xl font-bold font-serif text-center titleReturn">
-      
+
     </h1>
     <h1 class="mt-5 mx-7 text-2xl font-bold font-serif text-center artistReturn">
-      
+
     </h1>
     <h1 class="mx-7 text-2xl font-bold font-serif text-center albumReturn">
-      
+
     </h1>
 
     <!-- Hardcode lyric return -->
@@ -64,9 +64,24 @@
 
   <!-- right hand side div for metadata such as album and cover art -->
   <div class="w-1/6 h-auto p-2 mx-auto my-20 additionalMetadataReturn">
-    
+
   </div>
 
+  <!-- modal -->
+  <div id="modal">
+    <div class="bg-black bg-opacity-50 absolute inset-0 flex justify-center items-center">
+      <!-- modal content -->
+      <div class="relative bg-gray-200 h-64 w-96 p-4 border-4">
+        <h1 class="text-2xl modal-message"></h1>
+        <button id="closeMod"
+          class="absolute bottom-0 right-0 bg-red-500 hover:bg-red-700 border-red-500 hover:border-red-700 text-sm border-4 text-white py-1 px-2 rounded"
+          type="button">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
     integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>

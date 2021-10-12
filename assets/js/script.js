@@ -220,10 +220,16 @@ function toTitleCase(str) {
     return split.join(" ");
 }
 
-// Modal stuff
-
+/////////////////
+// Modal stuff //
+/////////////////
 var modal = $("#modal");
+modal.hide();
 
+/**
+ * shows the modal given a message
+ * @param {string} message - the message to be displayed
+ */
 function showModal(message){
     $(".modal-message").text(message);
     modal.show();
@@ -231,10 +237,10 @@ function showModal(message){
         modal.hide();
     });
 }
-modal.hide();
 
-
-// On Startup functions
+//////////////////////////
+// On Startup functions //
+//////////////////////////
 loadHistory();
 displayHistory();
 

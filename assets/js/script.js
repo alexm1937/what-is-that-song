@@ -17,10 +17,8 @@ $("#search").click(async function () {
         var lastFmUrl = "https://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist=" + artist + "&track=" + title + "&api_key=" + lastFmKey + "&format=json";
         var lastFmJson = await get(lastFmUrl);
         if (lastFmJson === 2 || lastFmJson.error) {
-            console.log("No song found. Clear fields and show modal with an ok button to remove said modal");
             clear();
-            // TODO song not found, probably show a modal
-
+            showModal("Song Not found");
             return;
         }
 
@@ -66,10 +64,16 @@ $("#search").click(async function () {
         displayHistory();
         display(track);
     } else {
-        console.log("Either title or artist or both are missing. Show modal stating that, with an ok button to dismiss the modal");
         clear();
-        // lacking title or artist or both
-        // popup modal needs doing TODO
+        var message = "";
+        if (!artist && !title) {
+            message = "Please enter an artist and a song";
+        } else if (!artist) {
+            message = "Please enter an artist";
+        } else {
+            message = "Please enter a song";
+        }
+        showModal(message);
         return;
     }
 })
@@ -216,26 +220,22 @@ function toTitleCase(str) {
     return split.join(" ");
 }
 
-// On Startup functions
+// Modal stuff
 
+var modal = $("#modal");
+
+function showModal(message){
+    $(".modal-message").text(message);
+    modal.show();
+    $("#closeMod").click(function () {
+        modal.hide();
+    });
+}
+modal.hide();
+
+
+// On Startup functions
 loadHistory();
 displayHistory();
 
 
-// modal test code:
-
-var modal = document.getElementById("modal")
-var modBtn = document.getElementById("modBtn")
-var btnClose = document.getElementById("closeMod");
-modBtn.onclick = function() {
-    modal.style.display = "block";
-    modal.classList.remove("hidden")
-}
-btnClose.onclick = function() {
-    modal.style.display = "none";
-}
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }

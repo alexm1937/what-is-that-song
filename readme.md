@@ -14,7 +14,7 @@ Our web application will find and display:
 
 ![image](screenshot.png)
 
-## By: Victor Weinert & Alex McDaniel
+## By: Victor Weinert, Alex McDaniel & Ean Rodriguez
 
 ## Technologies Used:
 

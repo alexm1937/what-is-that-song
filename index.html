@@ -21,17 +21,17 @@
 
   <!-- SIDE BAR - Buttons for previous searches stored in localStorage -->
 
-  <div class="flex p-2 h-4/5 w-48">
+  <div class="flex p-2 h-4/5 w-48 sm:w-48 w-full">
     <div class="content-center historyDiv">
     </div>
   </div>
 
   <!-- Main body -->
-  <div class="pt-2 w-4/6 h-4/5">
+  <div class="px-9 sm:px-0 pt-2 w-full sm:w-4/6 h-4/5">
 
     <!-- Input form -->
     <form>
-      <div class="flex items-center border-b border-teal-500 py-2">
+      <div class="flex sm:items-center flex-col sm:flex-row border-b border-teal-500 py-2">
         <input id="song"
           class="appearance-none shadow-lg bg-transparent border-2 border-black rounded w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:ring-2 focus:ring-blue-500"
           type="text" placeholder="Enter Song Name">
@@ -46,6 +46,11 @@
       </div>
     </form>
 
+    <!--Mobile Screens-->
+    <div class="flex flex-col w-full sm:w-1/6 h-auto p-2 mx-auto my-20 additionalMetadataReturn block sm:hidden">
+    
+    </div>
+
     <!-- Hardcode title, artist & album return -->
     <h1 class="mt-5 mx-7 text-2xl font-bold font-serif text-center titleReturn">
 
@@ -58,12 +63,12 @@
     </h1>
 
     <!-- Hardcode lyric return -->
-    <div class="mt-10 lyrics">
+    <div class="my-10 lyrics text-center px-4 sm:px-2 sm:text-left text-xl sm:lg font-medium sm:font-normal">
     </div>
   </div>
 
   <!-- right hand side div for metadata such as album and cover art -->
-  <div class="w-1/6 h-auto p-2 mx-auto my-20 additionalMetadataReturn">
+  <div class="w-full sm:w-1/6 h-auto p-2 mx-auto my-20 additionalMetadataReturn hidden sm:block">
 
   </div>
 
